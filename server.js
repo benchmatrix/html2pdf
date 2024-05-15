@@ -3,11 +3,15 @@ const bodyParser = require('body-parser')
 const { convertHtmlToPdf } = require('./htmltopdf')
 
 const app = express()
-const port = 50001
+const port = 5001
 
 app.use(bodyParser.text({ type: 'text/html' }))
 
-app.post('/htmltopdf', async (req, res) => {
+app.get('/', (req, res) => {
+  res.json('Api is working')
+})
+
+app.post('/pdf', async (req, res) => {
   try {
     const html = req.body // Access the HTML content from the body directly as text
     if (!html) {
