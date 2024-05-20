@@ -41,7 +41,7 @@ This service is designed to execute on AWS EC2 servers. Follow the steps below t
 
 For further help, attached are images guiding through each step:
 
-- ![Step 1](https://ibb.co/V2M9M1w)
+- ![Step 1](https://imgur.com/a/lr5T9xK)
 - ![Step 2](https://ibb.co/cynb80y)
 - ![Step 3](https://ibb.co/hfcM77Y)
 - ![Step 4](https://ibb.co/JRCmGs1)
