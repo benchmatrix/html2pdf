@@ -13,17 +13,19 @@ app.get('/', (req, res) => {
 
 app.post('/pdf', async (req, res) => {
   try {
-    const html = req.body // Access the HTML content from the body directly as text
+    const html = req.body
     if (!html) {
       return res.status(400).send('No HTML content provided.')
     }
-    const pdfBuffer = await convertHtmlToPdf(html) // Convert HTML to PDF and get a buffer
+
+    const pdfBuffer = await convertHtmlToPdf(html)
+    console.log('Buffer type:', Buffer.isBuffer(pdfBuffer)) // Check if it's a buffer
+    console.log('Buffer length:', pdfBuffer.length) // Check the size of the buffer
 
     res.setHeader('Content-Type', 'application/pdf')
-    res.setHeader('Content-Disposition', 'attachment; filename="output.pdf"')
-    res.setHeader('Content-Length', pdfBuffer.length)
+    res.setHeader('Content-Length', pdfBuffer.length.toString())
 
-    res.send(pdfBuffer) // Send the PDF buffer as the response
+    res.send(pdfBuffer)
   } catch (error) {
     console.error('Error converting HTML to PDF:', error)
     res.status(500).send('An error occurred while converting HTML to PDF.')

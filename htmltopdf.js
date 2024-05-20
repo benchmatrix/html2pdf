@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 
 async function convertHtmlToPdf(html) {
   const browser = await puppeteer.launch({
-    executablePath: 'node_modules/chromium/lib/chromium/chrome-linux/chrome',
+    executablePath: 'node_modules/chromium/lib/chromium/chrome-win/chrome.exe',
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
@@ -14,9 +14,16 @@ async function convertHtmlToPdf(html) {
 
   const page = await browser.newPage()
   await page.setContent(html)
-  const pdf = await page.pdf({ format: 'A3' })
+  const pdfBuffer = await page.pdf({
+    format: 'A3',
+    printBackground: true
+  })
+
+
+  // Close the browser
   await browser.close()
-  return pdf
+
+  return pdfBuffer
 }
 
 module.exports = { convertHtmlToPdf }
